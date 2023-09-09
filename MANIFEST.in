@@ -3,4 +3,5 @@ include LICENSE
 include CONTRIBUTING.md
 include README.md
 include omnidata_tools/*.csv
+include omnidata_tools/torch/tools/download_surface_normal_models.sh
 recursive-exclude * __pycache__
