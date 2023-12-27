@@ -4,8 +4,8 @@ import torch
 from omnidata_tools.torch.modules.midas.dpt_depth import DPTDepthModel
 
 OMNIDATA_NORMALS_WEIGHTS_URL = "https://drive.google.com/uc?id=1wNxVO4vVbDEMEpnAi_jwQObf2MFodcBR"
-OMNIDATA_NORMALS_WEIGHTS_PATH = "/tmp/omnidata_surface_normal_models/"
-
+# OMNIDATA_NORMALS_WEIGHTS_PATH = "/tmp/omnidata_surface_normal_models/"
+OMNIDATA_NORMALS_WEIGHTS_PATH = torch.hub.get_dir()
 
 def load_omni_model():
     """Download omnidata normals weights from Google Drive and load omnidata_tools model DPTDepthModel.
