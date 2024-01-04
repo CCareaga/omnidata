@@ -5,7 +5,8 @@ from omnidata_tools.torch.modules.midas.dpt_depth import DPTDepthModel
 
 OMNIDATA_NORMALS_WEIGHTS_URL = "https://drive.google.com/uc?id=1wNxVO4vVbDEMEpnAi_jwQObf2MFodcBR"
 # OMNIDATA_NORMALS_WEIGHTS_PATH = "/tmp/omnidata_surface_normal_models/"
-OMNIDATA_NORMALS_WEIGHTS_PATH = torch.hub.get_dir()
+OMNIDATA_NORMALS_WEIGHTS_DIR = torch.hub.get_dir()
+OMNIDATA_NORMALS_WEIGHTS_PATH = OMNIDATA_NORMALS_WEIGHTS_DIR + '/omnidata_dpt_normal_v2.ckpt'
 
 def load_omni_model():
     """Download omnidata normals weights from Google Drive and load omnidata_tools model DPTDepthModel.
@@ -14,9 +15,9 @@ def load_omni_model():
         model (omnidata_tools.torch.modules.midas.dpt_depth.DPTDepthModel): the model with weights loaded
     """
     # download weights
-    if not os.path.isdir(OMNIDATA_NORMALS_WEIGHTS_PATH):
-        os.makedirs(OMNIDATA_NORMALS_WEIGHTS_PATH, exist_ok=True)
-        gdown.download(url=OMNIDATA_NORMALS_WEIGHTS_URL, output=OMNIDATA_NORMALS_WEIGHTS_PATH)
+    if not os.path.isdir(OMNIDATA_NORMALS_WEIGHTS_DIR):
+        os.makedirs(OMNIDATA_NORMALS_WEIGHTS_DIR, exist_ok=True)
+        gdown.download(url=OMNIDATA_NORMALS_WEIGHTS_URL, output=OMNIDATA_NORMALS_WEIGHTS_DIR)
 
     model = DPTDepthModel(backbone='vitb_rn50_384', num_channels=3) # DPT Hybrid
     checkpoint = torch.load(OMNIDATA_NORMALS_WEIGHTS_PATH, map_location='cuda')
