@@ -15,7 +15,7 @@ def load_omni_model():
     """
     # download weights
     if not os.path.isdir(OMNIDATA_NORMALS_WEIGHTS_PATH):
-        os.mkdir(OMNIDATA_NORMALS_WEIGHTS_PATH)
+        os.makedirs(OMNIDATA_NORMALS_WEIGHTS_PATH, exist_ok=True)
         gdown.download(url=OMNIDATA_NORMALS_WEIGHTS_URL, output=OMNIDATA_NORMALS_WEIGHTS_PATH)
 
     model = DPTDepthModel(backbone='vitb_rn50_384', num_channels=3) # DPT Hybrid
